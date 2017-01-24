@@ -24,8 +24,117 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>1001<br/>pytań</h1>
+					<h2>o&nbsp;testach</h2>
+					<p>
+						<small>Michał Stocki</small>
+					</p>
+					<p><small>Young Digital Planet, Styczeń 2017</small></p>
+					<svg style="width: 60px; height: 60px;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path fill="#ffffff" d="M15 .47C6.975.47.47 6.974.47 15S6.974 29.53 15 29.53c8.025 0 14.53-6.505 14.53-14.53S23.026.47 15 .47zm-1.017 8.695c0-.56.455-1.016 1.017-1.016s1.017.454 1.017 1.015v6.113c0 .562-.455 1.017-1.017 1.017s-1.017-.456-1.017-1.017V9.165zM23.87 19.55c-1.716 3.34-5.114 5.417-8.87 5.417-3.755 0-7.153-2.076-8.87-5.418-.256-.5-.06-1.112.44-1.37.498-.256 1.112-.06 1.368.44 1.367 2.66 4.073 4.313 7.062 4.313 2.99 0 5.695-1.652 7.062-4.312.256-.5.87-.696 1.367-.44.5.258.697.87.44 1.37z"/></svg>
+				</section>
+				<section>
+					<h2>1. Po co są testy?</h2>
+					<ol>
+						<li>szósty zmysł przy projektowaniu
+							<ul>
+								<li>zły kod jest ciężko przetestować
+									<br><small>"Listen to your tests!"</small>
+								</li>
+								<li>ułatwiają start nad grubym feature'am
+									<br><small>pisząc najpierw testy, lepiej rozumiemy co mamy do zrobienia</small>
+								</li>
+							</ul>
+						</li>
+						<li>specyfikacja i dokumentacja
+							<ul>
+								<li>wysoko poziomowa – nazwy testów
+									<br><small>jakie przypadki rozważamy</small></li>
+								<li>nisko poziomowa – implementacja testów
+									<br><small>"specification by example"</small></li>
+							</ul>
+						</li>
+					</ol>
+					<aside class="notes">
+						<p>pytanie ważne bo od odpowiedzi zależy wszystko dalej</p>
+						<cite>
+							Kiedy pisałem ten kod miesiąc temu, tylko ja i Bóg wiedzieliśmy o co w nim chodzi. Teraz wie tylko Bóg…
+						</cite>
+						<p>specification by example: biblioteki na githubie gdzie tylko testy pokazują pełne wykorzystnie API – przykład: Aurelia
+						</p>
+
+					</aside>
+				</section>
+				<section>
+					<h2>1. Po co są testy?</h2>
+					<ol start="3">
+						<li>pomoc w myśleniu abstrakcyjnym
+							<br/><small>zmuszają do oddzielenia tego <i>co</i> chcemy osiągnąć od tego <i>jak</i> chcemy to osiągnać</small></li>
+						<li>wyznacznik tego kiedy możemy przestać kodować
+							<br><small>dowód poprawnej, kompletnej implementacji</small>
+						</li>
+						<li>ochrona przed regresem
+							<br><small>pozwalają niskim kosztem robić bezpiecznie duże zmiany</small>
+						</li>
+						<li>motywacja przez wizualizację postępu pracy
+							<br><small>oraz uczucie satysfakcji, kiedy w końcu wszystko jest na zielono</small>
+						</li>
+					</ol>
+					<aside class="notes">
+						<p>myślenie abstrakcyjne: newbie widzi tylko cel, junior widzi tylko implementację, senior widzi jedno i drugie</p>
+						<p>kiedy przestać kodować: przykład: swagger-json</p>
+						<p>ogrona przed regresem: szczególnie testy wysokiego poziomu: integracyjne i e2e</p>
+					</aside>
+				</section>
+				<section>
+					<h2>2. Czy i kiedy warto stosować&nbsp;TDD?</h2>
+					<p>Warto zawsze z wyjątkiem sytuacji,<br>kiedy nie bardzo się da:
+					<small>
+						<ul>
+							<li>duże ryzyko – nie jesteśmy w stanie przwidzieć czy nasz pomysł na realizację ma szansę powodzenia. Wtedy PoC potem dopiero TTD.</li>
+							<li>implementujemy klasę widokową, a testy e2e nie są pisane przez programistów</li>
+						</ul>
+					</small>
+					</p>
+					<p>Typowe choroby testów pisanych po implementacji:
+						<small><ul>
+							<li>silne powiązanie z implementacją, brak elastyczności (zabetonowane)</li>
+							<li>brak pokrycia części ścieżek</li>
+							<li>złe asercje np. dla getterów</li>
+							<li>opisy zawierające nazwy kodowe zamiast pojęć domenowych</li>
+						</ul></small>
+					</p>
+				</section>
+				<section>
+					<h2>3. Czy każdy projekt powinien być wyposażony w&nbsp;testy automatyczne?</h2>
+					<p>Powinniśmy pisać testy do każdego projektu, który wychodzi z fazy prototypu.</p>
+					<p><small>Rozwijanie jakiegokolwiek projektu, który nie jest pokryty testami, wiąże się z dużym ryzykiem, a ryzyko to będzie rosło wraz z wiekiem i rozmiarem projektu.</small></p>
+					<p>Nie każdy projekt powinien mieć jednak testy <strong>jednostkowe</strong>. Dla większości małych projektów wystarczą testy e2e (w różnej postaci).</p>
+				</section>
+				<section>
+					<h2>4. Czy do każdej klasy/funkcji powinno się pisać testy?</h2>
+					<p>I tak i nie. Każda logika powinna być pokryta testami, co nie oznacza, że każda klasa czy funkcja wymaga odrębnego zestawu testów</p>
+					<small>
+					<p>Przykłady:
+						<ul>
+							<li>Czasem cały zestaw strategii (rozdzielony na wiele klas) da się przetestować jednym zestawem testów</li>
+							<li>Logika nastawiona na efekt czysto wizualny, powinna być testowana e2e</li>
+						</ul>
+					</p>
+					</small>
+				</section>
+				<section>
+					<h2>5. Czym jest „jednostka” w testach jednostkowych?</h2>
+					<p>Test jednostkowy powinien pokrywać najmniejszą część kodu, która może zostać użyta ponownie, lub mniejszą, jeśli jest to konieczne ze względu na dużą liczbę przypadków testowych</p>
+					<small>
+						W przeciwnym wypadku ryzykujemy, że logika nie przestanie być testowana w momencie, kiedy usuniemy kontekst użycia, w którym została przetestowana.
+						Przykłady:
+						<ul>
+							<li>Warto przetestować jednostkowo nawet pojedynczą funkcję, która robi generyczną operację – może być użyta wielokrotnie</li>
+							<li>Nie warto testować osobno pojedynczej strategii, która nie zawiera rozgałęzień logiki a jej użycie poza mechanizmem strategii nie ma sensu.</li>
+						</ul>
+					</small>
+				</section>
 			</div>
 		</div>
 
