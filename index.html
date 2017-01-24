@@ -162,7 +162,7 @@
 					</p></small>
 				</section>
 				<section>
-					<h2>7. Jak poprawnie nazywać testy?</h2>
+					<h2>8. Jak poprawnie nazywać testy?</h2>
 					<small>
 						<p>
 							Przydatnych może być kilka wskazówek:
@@ -175,7 +175,7 @@
 					</small>
 				</section>
 				<section>
-					<h2>7. Jak poprawnie nazywać testy?</h2>
+					<h2>8. Jak poprawnie nazywać testy?</h2>
 					<pre><code class="hljs javascript" data-trim contenteditable>
 describe('PageTextRangeMerger', () => {
   describe('merging given list of page text ranges into a single page text range', () => {
@@ -201,7 +201,7 @@ describe('PageTextRangeMerger', () => {
 					</code></pre>
 				</section>
 				<section>
-					<h2>8. Czy warto używać nazw metod jako nazw testów?</h2>
+					<h2>9. Czy warto używać nazw metod jako nazw testów?</h2>
 					<p>Nie! To jeden z najczęstrzych błędów</p>
 					<small>
 						<p>
@@ -210,8 +210,45 @@ describe('PageTextRangeMerger', () => {
 					</small>
 				</section>
 				<section>
-					<h2>9. Czy warto stosować testy parametryzowane?</h2>
+					<h2>10. Czy warto stosować testy parametryzowane?</h2>
 					<p>To zależy.</p>
+					<small>
+						<p>
+							Testy parametryzowane dobrze sprawdzają się tam gdzie mamy wiele podobnych przypadków a nie mamy rozgałęzień logiki. Warto jednak w testach parametryzowanych nazwać słownie jaki przypadek brzegowy jest ilustrowany przez konkretny zestaw danych testowych.
+						</p>
+					</small>
+				</section>
+				<section>
+					<h2>11. Czy i kiedy warto mockować?</h2>
+					<p>Warto mockować wszędzie tam, gdzie użycie prawdziwej klasy jest kosztowne.</p>
+				</section>
+				<section>
+					<h2>12. Czy warto mockować biblioteki zewnętrzne (zależności)?</h2>
+					<p>Nie. Zdecydowanie nie powinno się tego robić.</p>
+					<p>
+						<small>
+							Mockując zależności narażamy się na to, że nie wykryjemy regresu spowodowanego przez update zależności. Niskopoziomowe zależności (np. lodash) traktujmy jak nasz własny kod – testujmy tak jak by wcale nie zostały użyte w implementacji. Wysokopoziomowe zależności (np. video.js) abudowujemy adapterem, w celu uniknięcia negatywnych skutków zmiany API.
+						</small>
+					</p>
+				</section>
+				<section>
+					<h2>13. Czy warto mockować API środowiska (np. DOM API)?</h2>
+					<p>Zdecdowanie nie.</p>
+				</section>
+				<section>
+					<h2>14. Czy zawsze trzeba przetestować wszystkie ścieżki? Co jeśli jest ich 3*4*12?</h2>
+					<p>Zawsze trzeba przetestować wszystkie ścieżki, jednak zbyt duża ich liczba w jednym zestawie testów jest wyraźnym sygnałem, że mamy źle wydzielone klasy</p>
+				</section>
+				<section>
+					<h2>15. Czy pisać przypadki testowe dla niepoprawnych danych (np. null zamiast jakiegoś argumentu)?</h2>
+					<p>Nie. Testujemy tylko to, czego się spodziewamy.</p>
+				</section>
+				<section>
+					<h2>16. Czy trzeba zawsze ograniczać się do pojedynczej asercji w każdym teście?</h2>
+					<p>Niekoniecznie. Czasem do potwierdzenia jednego zachowania, potrzebnych jest kilka asercji.</p>
+				</section>
+				<section>
+					<h1>Koniec</h1>
 				</section>
 			</div>
 		</div>
